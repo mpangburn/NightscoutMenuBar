@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="3hl-Ky-Qii" customClass="AppDelegate" customModule="NightscoutMenuBar" customModuleProvider="target"/>
+        <customObject id="ZZB-iI-07U" customClass="StatusMenuController" customModule="NightscoutMenuBar" customModuleProvider="target">
+            <connections>
+                <outlet property="lastUpdatedMenuItem" destination="7Ab-Yo-66b" id="oiw-fH-IQG"/>
+                <outlet property="showBGDeltaMenuItem" destination="bsV-Mn-vYb" id="xkI-Xx-AaA"/>
+                <outlet property="showBGTimeMenuItem" destination="BVW-8e-eEa" id="E0R-ky-Qoy"/>
+                <outlet property="statusMenu" destination="UxE-Xk-b2u" id="zTc-QA-iVQ"/>
+            </connections>
+        </customObject>
+        <menu id="UxE-Xk-b2u">
+            <items>
+                <menuItem title="Last Updated" enabled="NO" id="7Ab-Yo-66b">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="swk-zQ-T8x"/>
+                <menuItem title="Preferences" id="ewk-bB-dxK">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Preferences" id="wmF-F4-yrW">
+                        <items>
+                            <menuItem title="Show BG Delta" id="bsV-Mn-vYb">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleShowBGDelta:" target="ZZB-iI-07U" id="6ZB-NE-qTD"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show BG Time" id="BVW-8e-eEa">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleShowBGTime:" target="ZZB-iI-07U" id="WJb-fu-9kx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="4dO-2W-4Ap"/>
+                            <menuItem title="Set Nightscout URL..." id="dGO-gQ-BQW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="setNightscoutURLClicked:" target="ZZB-iI-07U" id="0jL-JV-4EX"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="X47-uW-cuc"/>
+                <menuItem title="Quit" id="efm-og-vyZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClickedWithSender:" target="ZZB-iI-07U" id="c7r-rM-ea8"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="120" y="2"/>
+        </menu>
+    </objects>
+</document>

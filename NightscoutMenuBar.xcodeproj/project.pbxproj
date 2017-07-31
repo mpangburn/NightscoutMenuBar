@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		89B3A64B1F2C52E800632CB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A64A1F2C52E800632CB9 /* AppDelegate.swift */; };
+		89B3A64F1F2C52E800632CB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B3A64E1F2C52E800632CB9 /* Assets.xcassets */; };
+		89B3A65F1F2C531B00632CB9 /* BloodGlucoseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A6591F2C531B00632CB9 /* BloodGlucoseEntry.swift */; };
+		89B3A6601F2C531B00632CB9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A65B1F2C531B00632CB9 /* UserDefaults.swift */; };
+		89B3A6611F2C531B00632CB9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89B3A65C1F2C531B00632CB9 /* MainMenu.xib */; };
+		89B3A6621F2C531B00632CB9 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A65D1F2C531B00632CB9 /* Nightscout.swift */; };
+		89B3A6631F2C531B00632CB9 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A65E1F2C531B00632CB9 /* StatusMenuController.swift */; };
+		89B3A6651F2D5AC300632CB9 /* NSMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A6641F2D5AC300632CB9 /* NSMenuItem.swift */; };
+		89B3A6671F2DA54600632CB9 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A6661F2DA54600632CB9 /* URL.swift */; };
+		89B3A6691F2DCA2800632CB9 /* BloodGlucoseUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A6681F2DCA2800632CB9 /* BloodGlucoseUnit.swift */; };
+		89B3A66B1F2E820F00632CB9 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A66A1F2E820F00632CB9 /* Double.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NightscoutMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		89B3A64A1F2C52E800632CB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		89B3A64E1F2C52E800632CB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		89B3A6531F2C52E800632CB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89B3A6591F2C531B00632CB9 /* BloodGlucoseEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodGlucoseEntry.swift; sourceTree = "<group>"; };
+		89B3A65B1F2C531B00632CB9 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		89B3A65C1F2C531B00632CB9 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		89B3A65D1F2C531B00632CB9 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
+		89B3A65E1F2C531B00632CB9 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		89B3A6641F2D5AC300632CB9 /* NSMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuItem.swift; sourceTree = "<group>"; };
+		89B3A6661F2DA54600632CB9 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		89B3A6681F2DCA2800632CB9 /* BloodGlucoseUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodGlucoseUnit.swift; sourceTree = "<group>"; };
+		89B3A66A1F2E820F00632CB9 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89B3A6441F2C52E800632CB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		89B3A63E1F2C52E800632CB9 = {
+			isa = PBXGroup;
+			children = (
+				89B3A6491F2C52E800632CB9 /* NightscoutMenuBar */,
+				89B3A6481F2C52E800632CB9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		89B3A6481F2C52E800632CB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89B3A6491F2C52E800632CB9 /* NightscoutMenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				89B3A6591F2C531B00632CB9 /* BloodGlucoseEntry.swift */,
+				89B3A6681F2DCA2800632CB9 /* BloodGlucoseUnit.swift */,
+				89B3A65C1F2C531B00632CB9 /* MainMenu.xib */,
+				89B3A65D1F2C531B00632CB9 /* Nightscout.swift */,
+				89B3A65E1F2C531B00632CB9 /* StatusMenuController.swift */,
+				89B3A65A1F2C531B00632CB9 /* Extensions */,
+				89B3A64A1F2C52E800632CB9 /* AppDelegate.swift */,
+				89B3A64E1F2C52E800632CB9 /* Assets.xcassets */,
+				89B3A6531F2C52E800632CB9 /* Info.plist */,
+			);
+			path = NightscoutMenuBar;
+			sourceTree = "<group>";
+		};
+		89B3A65A1F2C531B00632CB9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				89B3A66A1F2E820F00632CB9 /* Double.swift */,
+				89B3A6641F2D5AC300632CB9 /* NSMenuItem.swift */,
+				89B3A6661F2DA54600632CB9 /* URL.swift */,
+				89B3A65B1F2C531B00632CB9 /* UserDefaults.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89B3A6461F2C52E800632CB9 /* NightscoutMenuBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89B3A6561F2C52E800632CB9 /* Build configuration list for PBXNativeTarget "NightscoutMenuBar" */;
+			buildPhases = (
+				89B3A6431F2C52E800632CB9 /* Sources */,
+				89B3A6441F2C52E800632CB9 /* Frameworks */,
+				89B3A6451F2C52E800632CB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NightscoutMenuBar;
+			productName = NightscoutMenuBar;
+			productReference = 89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		89B3A63F1F2C52E800632CB9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Michael Pangburn";
+				TargetAttributes = {
+					89B3A6461F2C52E800632CB9 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 5Q5Q8W9ATZ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 89B3A6421F2C52E800632CB9 /* Build configuration list for PBXProject "NightscoutMenuBar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 89B3A63E1F2C52E800632CB9;
+			productRefGroup = 89B3A6481F2C52E800632CB9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89B3A6461F2C52E800632CB9 /* NightscoutMenuBar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		89B3A6451F2C52E800632CB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89B3A64F1F2C52E800632CB9 /* Assets.xcassets in Resources */,
+				89B3A6611F2C531B00632CB9 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89B3A6431F2C52E800632CB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89B3A65F1F2C531B00632CB9 /* BloodGlucoseEntry.swift in Sources */,
+				89B3A64B1F2C52E800632CB9 /* AppDelegate.swift in Sources */,
+				89B3A6631F2C531B00632CB9 /* StatusMenuController.swift in Sources */,
+				89B3A6691F2DCA2800632CB9 /* BloodGlucoseUnit.swift in Sources */,
+				89B3A6671F2DA54600632CB9 /* URL.swift in Sources */,
+				89B3A6601F2C531B00632CB9 /* UserDefaults.swift in Sources */,
+				89B3A6651F2D5AC300632CB9 /* NSMenuItem.swift in Sources */,
+				89B3A66B1F2E820F00632CB9 /* Double.swift in Sources */,
+				89B3A6621F2C531B00632CB9 /* Nightscout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		89B3A6541F2C52E800632CB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		89B3A6551F2C52E800632CB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		89B3A6571F2C52E800632CB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
+				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		89B3A6581F2C52E800632CB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
+				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		89B3A6421F2C52E800632CB9 /* Build configuration list for PBXProject "NightscoutMenuBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89B3A6541F2C52E800632CB9 /* Debug */,
+				89B3A6551F2C52E800632CB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89B3A6561F2C52E800632CB9 /* Build configuration list for PBXNativeTarget "NightscoutMenuBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89B3A6571F2C52E800632CB9 /* Debug */,
+				89B3A6581F2C52E800632CB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 89B3A63F1F2C52E800632CB9 /* Project object */;
+}
