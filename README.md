@@ -1,8 +1,8 @@
-# Nightscout Menu Bar <img src="https://github.com/mpangburn/Nightscout-Menu-Bar/blob/master/NightscoutMenuBar/Assets.xcassets/AppIcon.appiconset/icon_128x128.png?raw=true" alt="App Icon" width="64">
-
-![Open Menu Bar](https://github.com/mpangburn/Nightscout-Menu-Bar/blob/master/Screenshots/open%20menu%20bar.png?raw=true)
+# Nightscout Menu Bar
 
 A lightweight macOS menu bar application for displaying [Nightscout](https://github.com/nightscout/cgm-remote-monitor#nightscout-web-monitor-aka-cgm-remote-monitor) blood glucose data.
+
+![Open Menu Bar](https://github.com/mpangburn/Nightscout-Menu-Bar/blob/master/Screenshots/open%20menu%20bar.png?raw=true)
 
 - [x] Displays real-time Nightscout blood glucose data in the menu bar
 - [x] Displays recent blood glucose history on click
