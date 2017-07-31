@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NightscoutMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		89B3A6471F2C52E800632CB9 /* Nightscout Menu Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nightscout Menu Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B3A64A1F2C52E800632CB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89B3A64E1F2C52E800632CB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89B3A6531F2C52E800632CB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		89B3A6481F2C52E800632CB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */,
+				89B3A6471F2C52E800632CB9 /* Nightscout Menu Bar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 			);
 			name = NightscoutMenuBar;
 			productName = NightscoutMenuBar;
-			productReference = 89B3A6471F2C52E800632CB9 /* NightscoutMenuBar.app */;
+			productReference = 89B3A6471F2C52E800632CB9 /* Nightscout Menu Bar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -278,7 +278,7 @@
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Nightscout Menu Bar";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -292,7 +292,7 @@
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Nightscout Menu Bar";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -316,6 +316,7 @@
 				89B3A6581F2C52E800632CB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
