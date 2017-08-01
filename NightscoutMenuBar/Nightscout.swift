@@ -148,10 +148,11 @@ extension Nightscout {
                 rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
             }
 
+            // Because of the bug linked above, compute direction rather than pull from Nightscout
             let direction: String
-            if let directionString = entryDictionary["direction"] as? String, let arrow = directions[directionString] {
-                direction = arrow
-            } else if let previousEntry = entries.last {
+//            if let directionString = entryDictionary["direction"] as? String, let arrow = directions[directionString] {
+//                direction = arrow
+            if let previousEntry = entries.last {
                 direction = computeDirection(entryDate: date, glucoseValue: rawGlucoseValue, previousEntry: previousEntry)
             } else {
                 direction = ""
