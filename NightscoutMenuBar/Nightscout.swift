@@ -140,7 +140,7 @@ extension Nightscout {
             if rawPreviousGlucoseValue == nil, let previousEntry = entries.last {
                 rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
             }
-            let directionString = entryDictionary["direction"] as? String ?? "?"
+            let directionString = entryDictionary["direction"] as? String ?? ""
             let direction = directions[directionString] ?? directionString
 
             let entry = BloodGlucoseEntry(date: date, units: units, rawGlucoseValue: rawGlucoseValue, rawPreviousGlucoseValue: rawPreviousGlucoseValue, direction: direction)

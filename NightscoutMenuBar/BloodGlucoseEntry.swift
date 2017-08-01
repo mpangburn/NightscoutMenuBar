@@ -94,7 +94,10 @@ extension BloodGlucoseEntry {
         if includingTime {
             let minutesElapsed = Date().timeIntervalSince(date) / 60
             let minutesAgoLocalized = NSLocalizedString("min ago", comment: "The text describing the minutes elapsed since the blood glucose entry was entered")
-            text += " (\(Int(minutesElapsed)) \(minutesAgoLocalized))"
+            if !direction.isEmpty {
+                text += " "
+            }
+            text += "(\(Int(minutesElapsed)) \(minutesAgoLocalized))"
         }
         return text
     }
