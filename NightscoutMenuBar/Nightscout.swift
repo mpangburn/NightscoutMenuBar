@@ -122,28 +122,51 @@ extension Nightscout {
         }
 
         var entries: [BloodGlucoseEntry] = []
-        for entryDictionary in entryDictionaries {
+        for entryDictionary in entryDictionaries.reversed() {
 
             // BG value of 12 used when communication is lost
             guard entryDictionary["previousSGVNotActive"] == nil,
-                let value = entryDictionary["sgv"] as? Int,
-                value != 12 else {
+                let rawGlucoseValue = entryDictionary["sgv"] as? Int,
+                rawGlucoseValue != 12 else {
                     continue
             }
 
             guard let milliseconds = entryDictionary["date"] as? TimeInterval,
-                let previousValue = entryDictionary["previousSGV"] as? Int,
                 let directionString = entryDictionary["direction"] as? String,
                 let direction = directions[directionString] else {
                     throw NightscoutError.invalidData
             }
 
             let date = Date(timeIntervalSince1970: milliseconds / 1000)
-            let entry = BloodGlucoseEntry(date: date, units: units, glucoseValue: value, previousGlucoseValue: previousValue, direction: direction)
+            var rawPreviousGlucoseValue = entryDictionary["previousSGV"] as? Int
+            if rawPreviousGlucoseValue == nil, let previousEntry = entries.last {
+                rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
+            }
+            let entry = BloodGlucoseEntry(date: date, units: units, rawGlucoseValue: rawGlucoseValue, rawPreviousGlucoseValue: rawPreviousGlucoseValue, direction: direction)
             entries.append(entry)
         }
-        
+
+        entries = Array(entries.dropFirst().reversed())
         return entries
+    }
+
+    // Convenience for testing JSON data from text file
+    func bloodGlucoseEntriesFromFile(fileName: String) throws -> [BloodGlucoseEntry] {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            NSLog("Could not access documents directory")
+            throw NSError()
+        }
+
+        let path = documentsDirectory.appendingPathComponent("\(fileName).txt")
+        let data: Data
+        do {
+            data = try Data(contentsOf: path)
+        } catch {
+            NSLog("Error parsing entries from \(fileName).txt: \(error.localizedDescription)")
+            throw error
+        }
+
+        return try bloodGlucoseEntriesFromJSONData(data)
     }
 }
 
@@ -156,7 +179,6 @@ extension Nightscout {
             switch result {
             case .success(let units):
                 self.units = units
-                self.bloodGlucoseEntries.forEach { $0.units = units }
             case .failure:
                 break
             }

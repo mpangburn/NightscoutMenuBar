@@ -277,6 +277,7 @@
 				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
 				PRODUCT_NAME = "Nightscout Menu Bar";
 				SWIFT_VERSION = 3.0;
@@ -291,6 +292,7 @@
 				DEVELOPMENT_TEAM = 5Q5Q8W9ATZ;
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
 				PRODUCT_NAME = "Nightscout Menu Bar";
 				SWIFT_VERSION = 3.0;

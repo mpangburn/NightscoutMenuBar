@@ -23,33 +23,41 @@ class BloodGlucoseEntry {
     }
 
     /// The entry's blood glucose value in mg/dl.
-    private let _glucoseValue: Int
+    let rawGlucoseValue: Int
 
     /// The entry's blood glucose value in the entry's units.
     var glucoseValue: Double {
-        return convert(glucoseValue: _glucoseValue, to: units)
+        return convert(glucoseValue: rawGlucoseValue, to: units)
     }
 
     /// The previous entry's blood glucose value in mg/dl.
-    private let _previousGlucoseValue: Int
+    let rawPreviousGlucoseValue: Int?
 
     /// The entry's previous blood glucose value in the entry's units.
-    var previousGlucoseValue: Double {
-        return convert(glucoseValue: _previousGlucoseValue, to: units)
+    var previousGlucoseValue: Double? {
+        if let rawPreviousGlucoseValue = rawPreviousGlucoseValue {
+            return convert(glucoseValue: rawPreviousGlucoseValue, to: units)
+        } else {
+            return nil
+        }
     }
 
     /// The difference between the blood glucose value and the previous blood glucose value.
-    var delta: Double {
-        return glucoseValue - previousGlucoseValue
+    var delta: Double? {
+        if let previousGlucoseValue = previousGlucoseValue {
+            return glucoseValue - previousGlucoseValue
+        } else {
+            return nil
+        }
     }
 
     /// An arrow character representing the blood glucose trend.
     let direction: String
 
-    init(date: Date, units: BloodGlucoseUnit, glucoseValue: Int, previousGlucoseValue: Int, direction: String) {
+    init(date: Date, units: BloodGlucoseUnit, rawGlucoseValue: Int, rawPreviousGlucoseValue: Int?, direction: String) {
         self.date = date
-        self._glucoseValue = glucoseValue
-        self._previousGlucoseValue = previousGlucoseValue
+        self.rawGlucoseValue = rawGlucoseValue
+        self.rawPreviousGlucoseValue = rawPreviousGlucoseValue
         self.units = units
         self.direction = direction
     }
@@ -62,8 +70,11 @@ extension BloodGlucoseEntry {
     /// A string representing the difference between the blood glucose value and the previous blood glucose value.
     /// Includes the sign of the delta.
     var deltaString: String {
-        let delta = self.delta
-        return delta > 0 ? "+\(delta.cleanString)" : "\(delta.cleanString)"
+        if let delta = delta {
+            return delta > 0 ? "+\(delta.cleanString)" : "\(delta.cleanString)"
+        } else {
+            return "?"
+        }
     }
 
     /**
@@ -92,6 +103,6 @@ extension BloodGlucoseEntry {
 
 extension BloodGlucoseEntry: CustomStringConvertible {
     var description: String {
-        return "BloodGlucoseEntry(date: \(date), units: \(units) glucoseValue: \(glucoseValue), previousGlucoseValue: \(previousGlucoseValue), direction: \(direction))"
+        return "BloodGlucoseEntry(date: \(date), units: \(units) rawGlucoseValue: \(rawGlucoseValue), rawPreviousGlucoseValue: \(String(describing: rawPreviousGlucoseValue)), direction: \(direction))"
     }
 }
