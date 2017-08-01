@@ -11,7 +11,7 @@ A lightweight macOS menu bar application for displaying [Nightscout](https://git
 - [x] Very low memory usage (~12 MB)
 
 ## Installation
-* Download the latest version from the [releases page](https://github.com/mpangburn/Nightscout-Menu-Bar/releases/tag/v1.0) and extract the .zip file.
+* Download the latest version from the [releases page](https://github.com/mpangburn/Nightscout-Menu-Bar/releases) extract the .zip file.
 * Move Nightscout Menu Bar.app to your Applications folder.
 * Launch the application and enter your Nightscout URL when prompted.
 * (Optional) Launch the application on startup by adding it to System Preferences > Users and Groups > Login Items.
