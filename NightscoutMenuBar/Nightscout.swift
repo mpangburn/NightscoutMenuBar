@@ -124,24 +124,38 @@ extension Nightscout {
         var entries: [BloodGlucoseEntry] = []
         for entryDictionary in entryDictionaries.reversed() {
 
-            // BG value of 12 used when communication is lost
+            // BG value of 5 or 12 used when communication is lost
+            // If your BG is under 12, you shouldn't be looking at this app anyway
             guard entryDictionary["previousSGVNotActive"] == nil,
                 let rawGlucoseValue = entryDictionary["sgv"] as? Int,
-                rawGlucoseValue != 12 else {
+                rawGlucoseValue > 12 else {
                     continue
             }
 
             guard let milliseconds = entryDictionary["date"] as? TimeInterval else {
-                    throw NightscoutError.invalidData
+                throw NightscoutError.invalidData
             }
 
             let date = Date(timeIntervalSince1970: milliseconds / 1000)
+            // Accounting for Nightscout duplicate date upload bug in Loop v1.4.0
+            // See https://github.com/LoopKit/Loop/issues/542
+            if let previousEntry = entries.last, previousEntry.date == date {
+                continue
+            }
+
             var rawPreviousGlucoseValue = entryDictionary["previousSGV"] as? Int
             if rawPreviousGlucoseValue == nil, let previousEntry = entries.last {
                 rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
             }
-            let directionString = entryDictionary["direction"] as? String ?? ""
-            let direction = directions[directionString] ?? directionString
+
+            let direction: String
+            if let directionString = entryDictionary["direction"] as? String, let arrow = directions[directionString] {
+                direction = arrow
+            } else if let previousEntry = entries.last {
+                direction = computeDirection(entryDate: date, glucoseValue: rawGlucoseValue, previousEntry: previousEntry)
+            } else {
+                direction = ""
+            }
 
             let entry = BloodGlucoseEntry(date: date, units: units, rawGlucoseValue: rawGlucoseValue, rawPreviousGlucoseValue: rawPreviousGlucoseValue, direction: direction)
             entries.append(entry)
@@ -151,11 +165,33 @@ extension Nightscout {
         return entries
     }
 
+    private func computeDirection(entryDate: Date, glucoseValue: Int, previousEntry: BloodGlucoseEntry) -> String {
+        let minuteDelta = entryDate.timeIntervalSince(previousEntry.date) / 60
+        let rateOfChange = Double(glucoseValue - previousEntry.rawGlucoseValue) / minuteDelta
+        switch rateOfChange {
+        case let rate where rate > 3:
+            return "⇈"
+        case let rate where rate > 2:
+            return "↑"
+        case let rate where rate > 1:
+            return "↗"
+        case let rate where rate > -1:
+            return "→"
+        case let rate where rate > -2:
+            return "↘"
+        case let rate where rate > -3:
+            return "↓"
+        case let rate where rate <= -3:
+            return "⇊"
+        default:
+            return ""
+        }
+    }
+
     // Convenience for testing JSON data from text file
     func bloodGlucoseEntriesFromFile(fileName: String) throws -> [BloodGlucoseEntry] {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            NSLog("Could not access documents directory")
-            throw NSError()
+            return []
         }
 
         let path = documentsDirectory.appendingPathComponent("\(fileName).txt")

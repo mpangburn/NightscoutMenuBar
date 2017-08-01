@@ -38,18 +38,18 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
 
         let defaultDeltaMenuItemState = UserDefaults.standard.showBGDeltaMenuItemState
-        showBGDeltaMenuItem.state = defaultDeltaMenuItemState == NSUnsetState ? NSOffState : defaultDeltaMenuItemState
+        showBGDeltaMenuItem.state = defaultDeltaMenuItemState == NSUnsetState ? NSOnState : defaultDeltaMenuItemState
         let defaultTimeMenuItemState = UserDefaults.standard.showBGTimeMenuItemState
         showBGTimeMenuItem.state = defaultTimeMenuItemState == NSUnsetState ? NSOnState : defaultTimeMenuItemState
-
-        let refreshInterval = 60.0
-        Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(fetchBloodGlucoseData), userInfo: nil, repeats: true)
 
         if nightscout.baseURL == nil {
             setNightscoutURL()
         } else {
             nightscout.updateUnits(completion: fetchBloodGlucoseData)
         }
+
+        let refreshInterval = 60.0
+        Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(fetchBloodGlucoseData), userInfo: nil, repeats: true)
     }
 
     private func setNightscoutURL() {
