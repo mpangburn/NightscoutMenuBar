@@ -18,7 +18,7 @@ A lightweight macOS menu bar application for displaying [Nightscout](https://git
 
 ## Notes
 * [Submit an issue](https://github.com/mpangburn/RayTracer/issues) to report a bug, suggest a new feature, or provide feedback.
-* When reporting a bug, go to [yourNightscoutURL]/api/v1/entries.json and copy/paste the data you see in your issue submission.
+* When reporting a bug, go to [yourNightscoutURL]/api/v1/entries.json and copy/paste the data you see into your issue submission.
 
 ## Credits
 Nightscout Menu Bar was influenced by mddub's [similar application](https://github.com/mddub/nightscout-osx-menubar).
