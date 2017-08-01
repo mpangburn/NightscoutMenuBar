@@ -131,9 +131,7 @@ extension Nightscout {
                     continue
             }
 
-            guard let milliseconds = entryDictionary["date"] as? TimeInterval,
-                let directionString = entryDictionary["direction"] as? String,
-                let direction = directions[directionString] else {
+            guard let milliseconds = entryDictionary["date"] as? TimeInterval else {
                     throw NightscoutError.invalidData
             }
 
@@ -142,6 +140,9 @@ extension Nightscout {
             if rawPreviousGlucoseValue == nil, let previousEntry = entries.last {
                 rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
             }
+            let directionString = entryDictionary["direction"] as? String ?? "?"
+            let direction = directions[directionString] ?? directionString
+
             let entry = BloodGlucoseEntry(date: date, units: units, rawGlucoseValue: rawGlucoseValue, rawPreviousGlucoseValue: rawPreviousGlucoseValue, direction: direction)
             entries.append(entry)
         }
