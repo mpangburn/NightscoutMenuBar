@@ -77,13 +77,20 @@ class StatusMenuController: NSObject {
             case .success(let bgEntries):
                 self.nightscout.bloodGlucoseEntries = bgEntries
             case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = NSAlert()
-                    alert.alertStyle = .warning
-                    alert.messageText = NSLocalizedString("Nightscout Error", comment: "The title text for the error alert")
-                    alert.informativeText = error.localizedDescription
-                    alert.runModal()
+                let nsError = error as NSError
+                switch (nsError.domain, nsError.code) {
+                case ("NSURLErrorDomain", -1001), ("NSURLErrorDomain", -1009):
+                    break
+                default:
+                    DispatchQueue.main.async {
+                        let alert = NSAlert()
+                        alert.alertStyle = .warning
+                        alert.messageText = NSLocalizedString("Nightscout Error", comment: "The title text for the error alert")
+                        alert.informativeText = error.localizedDescription
+                        alert.runModal()
+                    }
                 }
+
             }
 
             self.lastUpdated = Date()
@@ -100,20 +107,21 @@ class StatusMenuController: NSObject {
             statusMenu.removeItem(at: 0)
         }
 
-        if let recentEntry = nightscout.bloodGlucoseEntries.first {
-            statusItem.title = recentEntry.string(includingDelta: showBGDeltaMenuItem.isOn, includingTime: showBGTimeMenuItem.isOn)
-
-            let remainingEntries = Array(nightscout.bloodGlucoseEntries.dropFirst())
-            guard !remainingEntries.isEmpty else { return }
-            statusMenu.insertItem(NSMenuItem.separator(), at: 0)
-            let entriesToShow = min(remainingEntries.count, 5)
-            for entry in remainingEntries[0..<entriesToShow].reversed() {
-                let entryMenuItem = NSMenuItem(title: entry.string(includingDelta: showBGDeltaMenuItem.isOn, includingTime: true), action: nil, keyEquivalent: "")
-                entryMenuItem.isEnabled = false
-                statusMenu.insertItem(entryMenuItem, at: 0)
-            }
-        } else {
+        guard let recentEntry = nightscout.bloodGlucoseEntries.first else {
             statusItem.title = "Nightscout"
+            return
+        }
+
+        statusItem.title = recentEntry.string(includingDelta: showBGDeltaMenuItem.isOn, includingTime: showBGTimeMenuItem.isOn)
+
+        let remainingEntries = Array(nightscout.bloodGlucoseEntries.dropFirst())
+        guard !remainingEntries.isEmpty else { return }
+        statusMenu.insertItem(NSMenuItem.separator(), at: 0)
+        let entriesToShow = min(remainingEntries.count, 5)
+        for entry in remainingEntries[0..<entriesToShow].reversed() {
+            let entryMenuItem = NSMenuItem(title: entry.string(includingDelta: showBGDeltaMenuItem.isOn, includingTime: true), action: nil, keyEquivalent: "")
+            entryMenuItem.isEnabled = false
+            statusMenu.insertItem(entryMenuItem, at: 0)
         }
     }
 
