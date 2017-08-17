@@ -12,14 +12,17 @@ import Foundation
 /// Fetches and stores Nightscout data.
 class Nightscout {
 
+    /// The base URL for the Nightscout site.
     var baseURL: String? = UserDefaults.standard.baseURL {
         didSet {
             UserDefaults.standard.baseURL = baseURL
         }
     }
 
+    /// The most recently fetched blood glucose entries.
     var bloodGlucoseEntries: [BloodGlucoseEntry] = []
 
+    /// The blood glucose units used by Nightscout.
     var units: BloodGlucoseUnit = .mgdL {
         didSet {
             bloodGlucoseEntries.forEach { $0.units = units }
@@ -54,18 +57,14 @@ class Nightscout {
 
 // MARK: - Blood glucose data fetching
 
-private let directions = [
-    "DoubleUp": "⇈",
-    "SingleUp": "↑",
-    "FortyFiveUp": "↗",
-    "Flat": "→",
-    "FortyFiveDown": "↘",
-    "SingleDown": "↓",
-    "DoubleDown": "⇊"
-]
-
 extension Nightscout {
 
+    /**
+     Fetches the specified number of most recent blood glucose entries.
+     - Parameters:
+        - count: The number of blood glucose entries to fetch.
+        - completion: The block to perform upon completing the fetch.
+     */
     func fetchBloodGlucoseData(count: Int = 10, completion: @escaping (Result<[BloodGlucoseEntry]>) -> Void) {
         guard let baseURL = baseURL,
             let url = URL(string: "\(baseURL)/api/v1/entries.json?count=\(count)"),
@@ -77,7 +76,7 @@ extension Nightscout {
         let session = URLSession.shared
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                NSLog("Blood glucose fetch error: \(error.localizedDescription)")
+                NSLog("Blood glucose fetch error: \(error)")
                 completion(.failure(error))
                 return
             }
@@ -93,7 +92,7 @@ extension Nightscout {
                         let bgEntries = try self.bloodGlucoseEntriesFromJSONData(data)
                         completion(.success(bgEntries))
                     } catch {
-                        NSLog("BG entry JSON parsing failed: \(error.localizedDescription)")
+                        NSLog("BG entry JSON parsing failed: \(error)")
                         completion(.failure(error))
                     }
                     return
@@ -112,7 +111,7 @@ extension Nightscout {
     }
 
     private func bloodGlucoseEntriesFromJSONData(_ data: Data) throws -> [BloodGlucoseEntry] {
-        typealias BGEntryDictionary = [String: AnyObject]
+        typealias BGEntryDictionary = [String: Any]
         let entryDictionaries: [BGEntryDictionary]
 
         do {
@@ -150,8 +149,6 @@ extension Nightscout {
 
             // Because of the bug linked above, compute direction rather than pull from Nightscout
             let direction: String
-//            if let directionString = entryDictionary["direction"] as? String, let arrow = directions[directionString] {
-//                direction = arrow
             if let previousEntry = entries.last {
                 direction = computeDirection(entryDate: date, glucoseValue: rawGlucoseValue, previousEntry: previousEntry)
             } else {
@@ -212,6 +209,10 @@ extension Nightscout {
 // MARK: - Blood glucose unit fetching
 extension Nightscout {
 
+    /**
+     Updates `units` to the blood glucose units preferred by the user's Nightscout.
+     - Parameter completion: The block to perform upon completion.
+     */
     func updateUnits(completion: (() -> Void)? = nil) {
         fetchUnits() { result in
             switch result {
@@ -224,6 +225,10 @@ extension Nightscout {
         }
     }
 
+    /**
+     Fetches the user's defined blood glucose units from Nightscout.
+     - Parameter completion: The block to perform upon completing the fetch.
+     */
     func fetchUnits(completion: @escaping (Result<BloodGlucoseUnit>) -> Void) {
         guard let baseURL = baseURL,
             let url = URL(string: "\(baseURL)/api/v1/status.json"),
@@ -235,7 +240,7 @@ extension Nightscout {
         let session = URLSession.shared
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                NSLog("Unit fetch error: \(error.localizedDescription)")
+                NSLog("Unit fetch error:  \(error)")
                 completion(.failure(error))
                 return
             }
@@ -251,7 +256,7 @@ extension Nightscout {
                         let units = try self.bloodGlucoseUnitsFromJSONData(data)
                         completion(.success(units))
                     } catch {
-                        NSLog("Unit JSON parsing failed: \(error.localizedDescription)")
+                        NSLog("Unit JSON parsing failed:  \(error)")
                         completion(.failure(error))
                     }
                     return
@@ -270,15 +275,14 @@ extension Nightscout {
     }
 
     private func bloodGlucoseUnitsFromJSONData(_ data: Data) throws -> BloodGlucoseUnit {
-        let statusDictionary: [String: AnyObject]?
+        let statusDictionary: [String: Any]
         do {
-            statusDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+            statusDictionary = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
         } catch {
             throw error
         }
 
-        guard let statusDict = statusDictionary,
-            let settingsDictionary = statusDict["settings"] as? [String: AnyObject],
+        guard let settingsDictionary = statusDictionary["settings"] as? [String: Any],
             let unitString = settingsDictionary["units"] as? String,
             let units = BloodGlucoseUnit(rawValue: unitString) else {
                 throw NightscoutError.invalidData

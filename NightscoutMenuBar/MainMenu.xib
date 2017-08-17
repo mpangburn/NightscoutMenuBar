@@ -9,8 +9,8 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="3hl-Ky-Qii" customClass="AppDelegate" customModule="NightscoutMenuBar" customModuleProvider="target"/>
-        <customObject id="ZZB-iI-07U" customClass="StatusMenuController" customModule="NightscoutMenuBar" customModuleProvider="target">
+        <customObject id="3hl-Ky-Qii" customClass="AppDelegate" customModule="Nightscout_Menu_Bar" customModuleProvider="target"/>
+        <customObject id="ZZB-iI-07U" customClass="StatusMenuController" customModule="Nightscout_Menu_Bar" customModuleProvider="target">
             <connections>
                 <outlet property="lastUpdatedMenuItem" destination="7Ab-Yo-66b" id="oiw-fH-IQG"/>
                 <outlet property="showBGDeltaMenuItem" destination="bsV-Mn-vYb" id="xkI-Xx-AaA"/>

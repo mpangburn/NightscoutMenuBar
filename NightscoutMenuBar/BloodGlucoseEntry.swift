@@ -18,11 +18,12 @@ class BloodGlucoseEntry {
     /// The units for the entry's blood glucose value.
     var units: BloodGlucoseUnit
 
+    /// Converts from mg/dL to the specified units.
     private func convert(glucoseValue: Int, to unit: BloodGlucoseUnit) -> Double {
         return Double(glucoseValue) * unit.conversionFactor
     }
 
-    /// The entry's blood glucose value in mg/dl.
+    /// The entry's blood glucose value in mg/dL.
     let rawGlucoseValue: Int
 
     /// The entry's blood glucose value in the entry's units.
@@ -30,7 +31,7 @@ class BloodGlucoseEntry {
         return convert(glucoseValue: rawGlucoseValue, to: units)
     }
 
-    /// The previous entry's blood glucose value in mg/dl.
+    /// The previous entry's blood glucose value in mg/dL.
     let rawPreviousGlucoseValue: Int?
 
     /// The entry's previous blood glucose value in the entry's units.
@@ -81,8 +82,8 @@ extension BloodGlucoseEntry {
      Returns a string representing the blood glucose entry with the specified options.
      The string is of form `[glucose value] [(delta)]? [direction] [(minutes ago)]?`
      - Parameters:
-     - includingDelta: A boolean representing whether or not to display the blood glucose delta in the string.
-     - includingTime: A boolean representing whether or not to display the number of minutes since the entry in the string.
+        - includingDelta: A boolean representing whether or not to display the blood glucose delta in the string.
+        - includingTime: A boolean representing whether or not to display the number of minutes since the entry in the string.
      - Returns: A string representing the blood glucose entry.
      */
     func string(includingDelta: Bool, includingTime: Bool) -> String {
