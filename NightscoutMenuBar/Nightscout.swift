@@ -57,6 +57,16 @@ class Nightscout {
 
 // MARK: - Blood glucose data fetching
 
+private let directions = [
+    "DoubleUp": "⇈",
+    "SingleUp": "↑",
+    "FortyFiveUp": "↗",
+    "Flat": "→",
+    "FortyFiveDown": "↘",
+    "SingleDown": "↓",
+    "DoubleDown": "⇊"
+]
+
 extension Nightscout {
 
     /**
@@ -147,9 +157,11 @@ extension Nightscout {
                 rawPreviousGlucoseValue = previousEntry.rawGlucoseValue
             }
 
-            // Because of the bug linked above, compute direction rather than pull from Nightscout
+            // Because of the bug linked above, compute direction if not provided by Nightscout
             let direction: String
-            if let previousEntry = entries.last {
+            if let uploadedDirectionString = entryDictionary["direction"] as? String, let uploadedDirection = directions[uploadedDirectionString] {
+                direction = uploadedDirection
+            } else if let previousEntry = entries.last {
                 direction = computeDirection(entryDate: date, glucoseValue: rawGlucoseValue, previousEntry: previousEntry)
             } else {
                 direction = ""
