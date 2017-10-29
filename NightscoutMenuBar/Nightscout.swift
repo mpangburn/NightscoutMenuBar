@@ -174,7 +174,9 @@ extension Nightscout {
         entries = Array(entries.dropFirst().reversed())
         return entries
     }
-
+    
+    // Computes instantaneous direction.
+    // TODO: - Look at trend over more time to compute direction.
     private func computeDirection(entryDate: Date, glucoseValue: Int, previousEntry: BloodGlucoseEntry) -> String {
         let minuteDelta = entryDate.timeIntervalSince(previousEntry.date) / 60
         let rateOfChange = Double(glucoseValue - previousEntry.rawGlucoseValue) / minuteDelta
@@ -201,7 +203,7 @@ extension Nightscout {
     // Convenience for testing JSON data from text file
     func bloodGlucoseEntriesFromFile(fileName: String) throws -> [BloodGlucoseEntry] {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return []
+            fatalError("Could not access documents directory")
         }
 
         let path = documentsDirectory.appendingPathComponent("\(fileName).txt")
