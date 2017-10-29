@@ -50,6 +50,12 @@ class StatusMenuController: NSObject {
 
         let refreshInterval = 60.0
         Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(fetchBloodGlucoseData), userInfo: nil, repeats: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchBloodGlucoseData), name: .NSWorkspaceDidWake, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func setNightscoutURL() {
