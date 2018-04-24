@@ -6,43 +6,47 @@
 //  Copyright © 2017 Michael Pangburn. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+import NightscoutKit
 
 
 extension UserDefaults {
-
-    private enum Key: String {
-        case baseURL = "com.pangburn.NightscoutMenuBar.baseURL"
-        case showBGDeltaMenuItemState = "com.pangburn.NightscoutMenuBar.showBGDeltaMenuItemState"
-        case showBGTimeMenuItemState = "com.pangburn.NightscoutMenuBar.showBGTimeMenuItemState"
+    private enum Key {
+        static let baseURL = "com.pangburn.NightscoutMenuBar.baseURL"
+        static let showBGDeltaMenuItemState = "com.pangburn.NightscoutMenuBar.showBGDeltaMenuItemState"
+        static let showBGTimeMenuItemState = "com.pangburn.NightscoutMenuBar.showBGTimeMenuItemState"
     }
 
-    var baseURL: String? {
+    var nightscout: Nightscout? {
         get {
-            return string(forKey: Key.baseURL.rawValue)
+            return url(forKey: Key.baseURL).map { Nightscout(baseURL: $0) }
         }
         set {
-            set(newValue, forKey: Key.baseURL.rawValue)
-        }
-    }
-
-    // In storing button states, offset by 1 to differentiate between off and no preference set.
-    // See NSMenuItem.swift for information regarding NSUnsetState.
-    var showBGDeltaMenuItemState: Int {
-        get {
-            return integer(forKey: Key.showBGDeltaMenuItemState.rawValue) - 1
-        }
-        set {
-            set(newValue + 1, forKey: Key.showBGDeltaMenuItemState.rawValue)
+            set(newValue?.baseURL, forKey: Key.baseURL)
         }
     }
 
-    var showBGTimeMenuItemState: Int {
+    var showBGDeltaMenuItemState: NSControl.StateValue? {
         get {
-            return integer(forKey: Key.showBGTimeMenuItemState.rawValue) - 1
+            guard let rawValue = object(forKey: Key.showBGDeltaMenuItemState) as? NSControl.StateValue.RawValue else {
+                return nil
+            }
+            return .init(rawValue: rawValue)
         }
         set {
-            set(newValue + 1, forKey: Key.showBGTimeMenuItemState.rawValue)
+            set(newValue?.rawValue, forKey: Key.showBGDeltaMenuItemState)
+        }
+    }
+
+    var showBGTimeMenuItemState: NSControl.StateValue? {
+        get {
+            guard let rawValue = object(forKey: Key.showBGTimeMenuItemState) as? NSControl.StateValue.RawValue else {
+                return nil
+            }
+            return .init(rawValue: rawValue)
+        }
+        set {
+            set(newValue?.rawValue, forKey: Key.showBGTimeMenuItemState)
         }
     }
 }

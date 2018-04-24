@@ -9,29 +9,13 @@
 import Cocoa
 
 
-/// The menu item state representing an unspecified preference.
-let NSUnsetState = -1
-
 extension NSMenuItem {
-
-    /// Determines whether the menu item's state is NSOnState.
-    /// If a menu item's state is "on", it shows a checkmark.
     var isOn: Bool {
         get {
-            return state == NSOnState
+            return state == .on
         }
         set {
-            state = newValue ? NSOnState : NSOffState
+            state = newValue ? .on : .off
         }
-    }
-
-    /**
-     Toggles the state of the menu item.
-     - Returns: The new state of the menu item.
-     */
-    @discardableResult func toggleState() -> Int {
-        let newState = (state == NSOnState) ? NSOffState : NSOnState
-        state = newState
-        return newState
     }
 }

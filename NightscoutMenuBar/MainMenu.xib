@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="lastUpdatedMenuItem" destination="7Ab-Yo-66b" id="oiw-fH-IQG"/>
                 <outlet property="showBGDeltaMenuItem" destination="bsV-Mn-vYb" id="xkI-Xx-AaA"/>
-                <outlet property="showBGTimeMenuItem" destination="BVW-8e-eEa" id="E0R-ky-Qoy"/>
+                <outlet property="showBGTimeAgoMenuItem" destination="BVW-8e-eEa" id="E0R-ky-Qoy"/>
                 <outlet property="statusMenu" destination="UxE-Xk-b2u" id="zTc-QA-iVQ"/>
             </connections>
         </customObject>
@@ -31,20 +31,20 @@
                             <menuItem title="Show BG Delta" id="bsV-Mn-vYb">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleShowBGDelta:" target="ZZB-iI-07U" id="6ZB-NE-qTD"/>
+                                    <action selector="toggleShowBGDelta:" target="ZZB-iI-07U" id="97B-wR-sc7"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show BG Time" id="BVW-8e-eEa">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleShowBGTime:" target="ZZB-iI-07U" id="WJb-fu-9kx"/>
+                                    <action selector="toggleShowBGTimeAgo:" target="ZZB-iI-07U" id="aBd-Ya-X2S"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="4dO-2W-4Ap"/>
                             <menuItem title="Set Nightscout URL..." id="dGO-gQ-BQW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="setNightscoutURLClicked:" target="ZZB-iI-07U" id="0jL-JV-4EX"/>
+                                    <action selector="setNightscoutURLClicked:" target="ZZB-iI-07U" id="cMs-UM-zfu"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -54,7 +54,7 @@
                 <menuItem title="Quit" id="efm-og-vyZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="quitClickedWithSender:" target="ZZB-iI-07U" id="c7r-rM-ea8"/>
+                        <action selector="quitClickedWithSender:" target="ZZB-iI-07U" id="D8i-fq-8hv"/>
                     </connections>
                 </menuItem>
             </items>
