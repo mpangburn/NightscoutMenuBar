@@ -3,15 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		893A99102068C48D00D41D9A /* NightscoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893A990F2068C48D00D41D9A /* NightscoutKit.framework */; };
 		893A99122068D10800D41D9A /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893A99112068D10800D41D9A /* Bool.swift */; };
 		893A99142068D98000D41D9A /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893A99132068D98000D41D9A /* LocalizedError.swift */; };
 		894F1E9E2064BA6A007CC69C /* DeltaRecordingNightscoutEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F1E9D2064BA6A007CC69C /* DeltaRecordingNightscoutEntry.swift */; };
 		894F1EA02064BC8D007CC69C /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F1E9F2064BC8D007CC69C /* TimeInterval.swift */; };
+		8962A2C4241EF976002A1D3D /* NightscoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8962A2C3241EF976002A1D3D /* NightscoutKit */; };
 		89B3A64B1F2C52E800632CB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A64A1F2C52E800632CB9 /* AppDelegate.swift */; };
 		89B3A64F1F2C52E800632CB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B3A64E1F2C52E800632CB9 /* Assets.xcassets */; };
 		89B3A6601F2C531B00632CB9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B3A65B1F2C531B00632CB9 /* UserDefaults.swift */; };
@@ -21,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		893A990F2068C48D00D41D9A /* NightscoutKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NightscoutKit.framework; path = Carthage/Build/Mac/NightscoutKit.framework; sourceTree = "<group>"; };
 		893A99112068D10800D41D9A /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		893A99132068D98000D41D9A /* LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedError.swift; sourceTree = "<group>"; };
 		894F1E9D2064BA6A007CC69C /* DeltaRecordingNightscoutEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRecordingNightscoutEntry.swift; sourceTree = "<group>"; };
@@ -41,21 +40,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				893A99102068C48D00D41D9A /* NightscoutKit.framework in Frameworks */,
+				8962A2C4241EF976002A1D3D /* NightscoutKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		894F1E922064A121007CC69C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				893A990F2068C48D00D41D9A /* NightscoutKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		894F1EA22064CD38007CC69C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +60,6 @@
 			children = (
 				89B3A6491F2C52E800632CB9 /* NightscoutMenuBar */,
 				89B3A6481F2C52E800632CB9 /* Products */,
-				894F1E922064A121007CC69C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,13 +107,15 @@
 				89B3A6431F2C52E800632CB9 /* Sources */,
 				89B3A6441F2C52E800632CB9 /* Frameworks */,
 				89B3A6451F2C52E800632CB9 /* Resources */,
-				894F1E982064A4A4007CC69C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NightscoutMenuBar;
+			packageProductDependencies = (
+				8962A2C3241EF976002A1D3D /* NightscoutKit */,
+			);
 			productName = NightscoutMenuBar;
 			productReference = 89B3A6471F2C52E800632CB9 /* Nightscout Menu Bar.app */;
 			productType = "com.apple.product-type.application";
@@ -135,7 +127,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Michael Pangburn";
 				TargetAttributes = {
 					89B3A6461F2C52E800632CB9 = {
@@ -147,13 +139,16 @@
 			};
 			buildConfigurationList = 89B3A6421F2C52E800632CB9 /* Build configuration list for PBXProject "NightscoutMenuBar" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
 			mainGroup = 89B3A63E1F2C52E800632CB9;
+			packageReferences = (
+				8962A2C2241EF976002A1D3D /* XCRemoteSwiftPackageReference "NightscoutKit" */,
+			);
 			productRefGroup = 89B3A6481F2C52E800632CB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,23 +169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		894F1E982064A4A4007CC69C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/NightscoutKit.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89B3A6431F2C52E800632CB9 /* Sources */ = {
@@ -315,7 +293,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -323,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -330,7 +310,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
 				PRODUCT_NAME = "Nightscout Menu Bar";
@@ -343,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -350,7 +334,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = NightscoutMenuBar/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangburn.NightscoutMenuBar;
 				PRODUCT_NAME = "Nightscout Menu Bar";
@@ -381,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8962A2C2241EF976002A1D3D /* XCRemoteSwiftPackageReference "NightscoutKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mpangburn/NightscoutKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8962A2C3241EF976002A1D3D /* NightscoutKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8962A2C2241EF976002A1D3D /* XCRemoteSwiftPackageReference "NightscoutKit" */;
+			productName = NightscoutKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 89B3A63F1F2C52E800632CB9 /* Project object */;
 }

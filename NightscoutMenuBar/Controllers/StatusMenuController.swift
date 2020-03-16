@@ -19,11 +19,11 @@ class StatusMenuController: NSObject {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private var entryMenuItems: [NSMenuItem] = []
 
-    private var nightscout: Nightscout? {
+    private var nightscout: NightscoutDownloader? {
         didSet {
             dataStore.clearFetchedEntriesCache()
             nightscout?.addObservers(dataStore, self)
-            UserDefaults.standard.nightscout = nightscout
+            UserDefaults.standard.nightscoutURL = nightscout?.credentials.url
         }
     }
 
@@ -54,13 +54,10 @@ class StatusMenuController: NSObject {
         showBGDeltaMenuItem.state = UserDefaults.standard.showBGDeltaMenuItemState ?? .on
         showBGTimeAgoMenuItem.state = UserDefaults.standard.showBGTimeMenuItemState ?? .on
 
-        nightscout = UserDefaults.standard.nightscout
-        if nightscout == nil {
-            setNightscoutURL()
+        if let url = UserDefaults.standard.nightscoutURL {
+            updateDownloader(forURL: url)
         } else {
-            nightscout?.fetchStatus { _ in
-                self.fetchEntries()
-            }
+            setNightscoutURL()
         }
 
         setupRefreshTimer()
@@ -98,7 +95,7 @@ class StatusMenuController: NSObject {
         alert.informativeText = NSLocalizedString("Enter your Nightscout URL below.", comment: "The subtitle text for the window prompting users for their Nightscout URL")
         let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 320, height: 22))
         textField.placeholderString = NSLocalizedString("https://YOUR-NIGHTSCOUT-SITE.herokuapp.com", comment: "The placeholder text for the text field where users enter their Nightscout URL")
-        textField.stringValue = nightscout?.baseURL.relativeString ?? ""
+        textField.stringValue = nightscout?.credentials.url.relativeString ?? ""
         alert.accessoryView = textField
         alert.addButton(withTitle: NSLocalizedString("OK", comment: "The text for the button confirming the user's Nightscout URL"))
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: "The text for the button canceling the user's Nightscout URL entry"))
@@ -109,15 +106,25 @@ class StatusMenuController: NSObject {
         }
 
         let trimmedURLString = textField.stringValue.trimmingCharacters(in: .whitespaces)
-        do {
-            nightscout = try Nightscout(baseURLString: trimmedURLString)
-            nightscout?.fetchStatus { _ in
-                self.fetchEntries()
-            }
-        } catch NightscoutError.invalidURL {
+        guard let url = URL(string: trimmedURLString) else {
             presentError(.invalidURL)
-        } catch {
-            fatalError("Unreachable; `Nightscout`'s initializer can only throw `NightscoutError.invalidURL`")
+            return
+        }
+
+        updateDownloader(forURL: url)
+    }
+
+    private func updateDownloader(forURL url: URL) {
+        NightscoutDownloaderCredentials.validate(url: url) { result in
+            switch result {
+            case .success(let credentials):
+                self.nightscout = NightscoutDownloader(credentials: credentials)
+                self.nightscout?.fetchStatus { _ in
+                    self.fetchEntries()
+                }
+            case .failure(let error):
+                self.presentError(error)
+            }
         }
     }
 
@@ -202,13 +209,13 @@ class StatusMenuController: NSObject {
 // MARK: - NightscoutObserver
 
 extension StatusMenuController: NightscoutObserver {
-    func nightscout(_ nightscout: Nightscout, didFetchEntries entries: [NightscoutEntry]) {
+    func downloader(_ nightscout: NightscoutDownloader, didFetchEntries entries: [NightscoutEntry]) {
         DispatchQueue.main.async {
             self.lastUpdated = Date()
         }
     }
 
-    func nightscout(_ nightscout: Nightscout, didErrorWith error: NightscoutError) {
+    func downloader(_ nightscout: NightscoutDownloader, didErrorWith error: NightscoutError) {
         switch error {
         case .fetchError(URLError.notConnectedToInternet),
              .fetchError(URLError.networkConnectionLost):

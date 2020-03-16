@@ -17,12 +17,16 @@ extension UserDefaults {
         static let showBGTimeMenuItemState = "com.pangburn.NightscoutMenuBar.showBGTimeMenuItemState"
     }
 
-    var nightscout: Nightscout? {
+    var nightscoutURL: URL? {
         get {
-            return url(forKey: Key.baseURL).map { Nightscout(baseURL: $0) }
+            return url(forKey: Key.baseURL)
         }
         set {
-            set(newValue?.baseURL, forKey: Key.baseURL)
+            guard let newValue = newValue else {
+                removeObject(forKey: Key.baseURL)
+                return
+            }
+            set(newValue.baseURL, forKey: Key.baseURL)
         }
     }
 
