@@ -16,7 +16,7 @@ class StatusMenuController: NSObject {
     @IBOutlet weak var showBGDeltaMenuItem: NSMenuItem!
     @IBOutlet weak var showBGTimeMenuItem: NSMenuItem!
 
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let nightscout = Nightscout()
 
     private let dateFormatter: DateFormatter = {
@@ -38,9 +38,9 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
 
         let defaultDeltaMenuItemState = UserDefaults.standard.showBGDeltaMenuItemState
-        showBGDeltaMenuItem.state = defaultDeltaMenuItemState == NSUnsetState ? NSOnState : defaultDeltaMenuItemState
+        showBGDeltaMenuItem.state = defaultDeltaMenuItemState == NSUnsetState ? NSControl.StateValue.on : intToStateValue(defaultDeltaMenuItemState)
         let defaultTimeMenuItemState = UserDefaults.standard.showBGTimeMenuItemState
-        showBGTimeMenuItem.state = defaultTimeMenuItemState == NSUnsetState ? NSOnState : defaultTimeMenuItemState
+        showBGTimeMenuItem.state = defaultTimeMenuItemState == NSUnsetState ? NSControl.StateValue.on : intToStateValue(defaultTimeMenuItemState)
 
         if nightscout.baseURL == nil {
             setNightscoutURL()
@@ -51,7 +51,7 @@ class StatusMenuController: NSObject {
         let refreshInterval = 60.0
         Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(fetchBloodGlucoseData), userInfo: nil, repeats: true)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchBloodGlucoseData), name: .NSWorkspaceDidWake, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchBloodGlucoseData), name: NSWorkspace.didWakeNotification, object: nil)
     }
     
     deinit {
@@ -69,8 +69,8 @@ class StatusMenuController: NSObject {
         alert.accessoryView = textField
         alert.addButton(withTitle: NSLocalizedString("OK", comment: "The text for the button confirming the user's Nightscout URL"))
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: "The text for the button canceling the user's Nightscout URL entry"))
-        let response = alert.runModal() % 999
-        if response == NSModalResponseOK {
+        let response = alert.runModal()
+        if response == NSApplication.ModalResponse.alertFirstButtonReturn {
             nightscout.baseURL = textField.stringValue.trimmingCharacters(in: .whitespaces)
             nightscout.bloodGlucoseEntries.removeAll()
             nightscout.updateUnits(completion: fetchBloodGlucoseData)
@@ -100,10 +100,20 @@ class StatusMenuController: NSObject {
             }
 
             self.lastUpdated = Date()
-            self.updateUI()
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
         }
     }
 
+    private func intToStateValue(_ input: Int) -> NSControl.StateValue {
+        if (input == 1) {
+            return NSControl.StateValue.on
+        } else {
+            return NSControl.StateValue.off
+        }
+    }
+    
     private func updateUI() {
         for item in statusMenu.items where item.title.contains("min") {
             statusMenu.removeItem(item)
@@ -146,6 +156,6 @@ class StatusMenuController: NSObject {
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
 }

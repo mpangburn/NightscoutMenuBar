@@ -18,10 +18,10 @@ extension NSMenuItem {
     /// If a menu item's state is "on", it shows a checkmark.
     var isOn: Bool {
         get {
-            return state == NSOnState
+            return state == NSControl.StateValue.on
         }
         set {
-            state = newValue ? NSOnState : NSOffState
+            state = newValue ? NSControl.StateValue.on : NSControl.StateValue.off
         }
     }
 
@@ -30,8 +30,12 @@ extension NSMenuItem {
      - Returns: The new state of the menu item.
      */
     @discardableResult func toggleState() -> Int {
-        let newState = (state == NSOnState) ? NSOffState : NSOnState
-        state = newState
-        return newState
+        if (state == NSControl.StateValue.on) {
+            state = NSControl.StateValue.off
+        } else {
+            state = NSControl.StateValue.on
+        }
+        // TODO(jeff): validate it's 1 or 0 like before
+        return state.rawValue
     }
 }
