@@ -100,7 +100,9 @@ class StatusMenuController: NSObject {
             }
 
             self.lastUpdated = Date()
-            self.updateUI()
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
         }
     }
 
